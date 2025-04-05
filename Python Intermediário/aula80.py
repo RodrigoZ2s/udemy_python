@@ -36,6 +36,4 @@ def find_first_duplicate(listas):
 
         
 for lista in lista_de_listas_de_inteiros:
-    print(find_first_duplicate(lista))
-
-        
+    print(find_first_duplicate(lista))    
