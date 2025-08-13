@@ -28,6 +28,17 @@ def registrar_gatos(): # Finalizado
             continue
         break
 
-registrar_gatos()
-
+def monitor_peso(): # Em manutenção
     
+    gato = input("Nome do gato: ")
+    for gatos in lista_de_gatos:
+        if gato != gatos["nome"]:
+            return "Gato não encontrado"
+    
+    peso_atual = input("Peso atual: ")
+    for nomes in lista_de_gatos:
+        if nomes == gato:
+            nomes["peso"] = peso_atual
+            return nomes["peso"]
+
+monitor_peso()
