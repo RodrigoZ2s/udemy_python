@@ -29,16 +29,38 @@ def registrar_gatos(): # Finalizado
         break
 
 def monitor_peso(): # Em manutenção
+
+    excelente = 30
+    muito_bom = 20
+    bom = 15
+    baixo = 10
     
-    gato = input("Nome do gato: ")
+    gato_digitado = input("Nome do gato: ")
     for gatos in lista_de_gatos:
-        if gato != gatos["nome"]:
-            return "Gato não encontrado"
-    
-    peso_atual = input("Peso atual: ")
-    for nomes in lista_de_gatos:
-        if nomes == gato:
-            nomes["peso"] = peso_atual
-            return nomes["peso"]
+        if gato_digitado in gatos["nome"]:
+            peso_atual = input("Peso atual do gato: ")
+
+            if peso_atual.isdigit() == False:
+                return "Você não digitou um número válido"  
+            ganho = int(peso_atual) - gatos["peso"]
+
+            if ganho < bom:
+                return "❌ Ruim!: Ganho de peso igual ou abaixo de 14g."
+            elif ganho >= 15 and ganho < muito_bom:
+                return "✅ Bom!: Ganho de peso entre 15g e 19g."
+            elif ganho >= muito_bom and ganho < excelente:
+                return "✅ Muito bom!: Ganho de peso entre 20g e 29g."
+            elif ganho >= excelente:
+                return (
+                f"✅ Excelente!: Ganho de peso de 30g ou mais. \n" 
+                f"Atenção!: Ganho de peso excessivo! procure um veterinário se notar mudanças no comportamento de {gato_digitado}"
+            )
+
+    return "Gato não encontrado"
+
+        
+
+
+            
 
 monitor_peso()

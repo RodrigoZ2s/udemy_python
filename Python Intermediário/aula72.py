@@ -1,22 +1,14 @@
-def multiplo(*args):
+def multiplicar(*args):
     total = 1
     for numero in args:
-        total *= numero
+        total *= numero 
     return total
-    
-total_multiplicado = multiplo(1, 2, 3, 4)
-print(total_multiplicado)
 
+print(multiplicar(1, 2, 3))
 
-def par_ou_impar():
-        numero_input = int(input("Digite um número: "))
-        resposta = numero_input % 2 == 0
-        if resposta:
-            return f"{numero_input} é par"         
-        return f"{numero_input} é ímpar"
-            
+def parImpar(numero):
+    if numero % 2 == 0:
+        return f"{numero} é par!"
+    return f"{numero} é impár!"
 
-print(par_ou_impar())
-
-
-
+print(parImpar(3))
