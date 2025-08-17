@@ -11,5 +11,5 @@ def multiplicarPares(*args):
         return 0
     return total
 
-print(multiplicarPares(1,3))
+print(multiplicarPares(1, 2, 3, 4))
             

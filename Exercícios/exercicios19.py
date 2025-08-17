@@ -13,4 +13,3 @@ def parImparCount(*args):
     return f"Pares: {contagem_par}, Ímpares: {contagem_impar}"
 
 print(parImparCount(1, 2, 3, 4, 5))
-    

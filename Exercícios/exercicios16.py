@@ -5,7 +5,7 @@
 def multiplicador(*args):
     resultado = 1
     for numero in args:
-       resultado = resultado * numero
+       resultado *= numero
     return resultado * 2
 
 print(multiplicador(2, 3, 4))
