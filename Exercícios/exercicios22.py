@@ -107,46 +107,52 @@ perguntas3 = [
         "Dica": "É o quarto planeta a partir do Sol."
     },
 ]
+import os
 
-def average_quest(dicionario):
-
-    print("----------------------")
-    print("Questionário com dicas")
-    print("----------------------")
-    acertou = False
+def quiz_withTips(dicionario):
     acertos = 0
-    while acertou == False and tentativas > 0:
-        acertou = False
+
+    for perguntas in dicionario:
         tentativas = 2
-        for perguntas in dicionario:
-            print(f"Pergunta: {perguntas['Pergunta']}")
-            opcoes = perguntas["Opções"]
-            for i, opcao in enumerate(opcoes):
-                  print(f"{i}) {opcao}")
+        acertou = False
 
-            escolha = int(input("Escolha uma opção: "))
+        print(f"\nPergunta: {perguntas['Pergunta']}")   
+        while tentativas > 0 and acertou == False:
 
-            if opcoes[escolha] == perguntas["Resposta"]:
-                acertos += 1
-                print("\n>> Acertou!\n" )
-                acertou =- True
+            for indice, opcao in enumerate(perguntas["Opções"]):
+                print(f"{indice}) {opcao}")
+
+            escolha_inicial = input("Escolha uma opção: ")
+
+            if escolha_inicial.isdigit() == False: # Verifica se é um número
+                os.system("cls")
+                print("Você não digitou um número válido!\n")
                 continue
-            elif opcoes[escolha] != perguntas["Resposta"]:
-                    tentativas -= 1
-                    print(f"\n>> Errou! tente novamente...\n | tentivas restantes: {tentativas}\n ")
 
-                    if tentativas > 0:
-                        erro_usuario = input("> Pressione [ENTER] continuar ou [1] para pedir uma dica\n").lower()
-                    elif tentativas == 0:
-                        print("Tentativas esgotadas, você falhou no questionário, tente novamente")
-                        input("[Enter]")
-                        break
-                    elif erro_usuario == "":
-                        continue
-                    elif erro_usuario == "1":
-                        print(f">> Dica: {perguntas["Dica"]}")
-                        input("Pressione qualquer tecla para continuar\n")
-                        
+            escolha_indice = int(escolha_inicial)
 
-        print(f"Você acertou")
-average_quest(perguntas3)
+            if perguntas["Opções"][escolha_indice] == perguntas["Resposta"]:
+                acertos += 1
+                print("\nVocê acertou!")
+                acertou = True
+                break
+
+            tentativas -= 1   
+            if tentativas == 0:
+                print("\n>> Acabou suas tentativas! Você errou a questão")
+                break
+
+            else:
+                os.system("cls")
+                escolha_errada = input("Você errou! Pressione [1] para uma dica ou [Enter] para tentar novamente.\nEscolha: ")
+                print(f"restam {tentativas} tentativas")
+
+                if escolha_errada == "1":
+                    input(f"\n>> {perguntas['Dica']} [Enter para continuar]")
+                    continue
+                else: 
+                    continue
+    print(f"Você conseguiu um total de {acertos} de {len(dicionario)} acertos!")
+
+quiz_withTips(perguntas3)
+    
